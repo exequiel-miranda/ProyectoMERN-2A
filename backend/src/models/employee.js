@@ -22,7 +22,7 @@ const employeeSchema = new Schema(
     birthday: {
       type: Date,
       require: true,
-      min: 0,
+ 
     },
 
     email: {
@@ -34,32 +34,32 @@ const employeeSchema = new Schema(
       },
 
     password: {
-      type: Number,
+      type: String,
       require: true,
-      min: 8,
+
     },
     hireDate: {
         type: String,
       },
 
     telephone: {
-        type: Number,
+        type: String,
         require: true,
-        min: 8,
+ 
       },
 
       dui: {
-        type: Number,
+        type: String,
         require: true,
-        min: 9,
+
       },
       isVerified: {
         type: Boolean,
       },
       issnumber: {
-        type: Number,
+        type: String,
         require: true,
-        min: 8,
+   
       },
   },
   {
