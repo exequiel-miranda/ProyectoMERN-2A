@@ -4,10 +4,11 @@ import productsRoutes from "./src/routes/products.js";
 import customersRoutes from "./src/routes/customers.js";
 import employeeRoutes from "./src/routes/employees.js";
 import branchesRoutes from "./src/routes/branches.js";
-import registerEmployessRoutes from "./src/routes/registerEmployees.js"
-import cookieParser from "cookie-parser"
-import loginRoutes from "./src/routes/login.js"
-import logoutRoutes from "./src/routes/logout.js"
+import registerEmployessRoutes from "./src/routes/registerEmployees.js";
+import cookieParser from "cookie-parser";
+import loginRoutes from "./src/routes/login.js";
+import logoutRoutes from "./src/routes/logout.js";
+import registerClientRoutes from "./src/routes/registerClients.js";
 
 // Creo una constante que es igual a la libreria que importé
 const app = express();
@@ -15,19 +16,19 @@ const app = express();
 //Que acepte datos en json
 app.use(express.json());
 //Que postman acepte guardar cookies
-app.use(cookieParser())
+app.use(cookieParser());
 
 // Definir las rutas de las funciones que tendrá la página web
 app.use("/api/products", productsRoutes);
-app.use("/api/customers",customersRoutes);
-app.use("/api/employee",employeeRoutes);
-app.use("/api/branches",branchesRoutes);
+app.use("/api/customers", customersRoutes);
+app.use("/api/employee", employeeRoutes);
+app.use("/api/branches", branchesRoutes);
 
-app.use("/api/registerEmployees", registerEmployessRoutes)
-app.use("/api/login", loginRoutes)
-app.use("/api/logout", logoutRoutes)
+app.use("/api/registerEmployees", registerEmployessRoutes);
+app.use("/api/login", loginRoutes);
+app.use("/api/logout", logoutRoutes);
 
-
+app.use("/api/registerClients", registerClientRoutes);
 
 // Exporto la constante para poder usar express en otros archivos
 export default app;
