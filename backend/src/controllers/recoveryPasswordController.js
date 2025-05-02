@@ -42,7 +42,7 @@ passwordRecoveryController.requestCode = async (req, res) => {
       //2-secret key
       config.JWT.secret,
       //3-¿Cuando expira?
-      { expiresIn: "20" }
+      { expiresIn: "20m" }
     );
 
     res.cookie("tokenRecoveryCode", token, { maxAge: 20 * 60 * 1000 });
@@ -54,6 +54,46 @@ passwordRecoveryController.requestCode = async (req, res) => {
       "Hello! Remember dont forget your pass", //Cuerpo del mensaje
       HTMLRecoveryEmail(code) //HTML
     );
+
+    res.json({ message: "correo enviado" });
+  } catch (error) {
+    console.log("error" + error);
+  }
+};
+
+// FUNCION PARA VERIFICAR CÓDIGO
+passwordRecoveryController.verifyCode = async (req, res) => {
+  const { code } = req.body;
+
+  try {
+    //Sacar el token de las cookies
+    const token = req.cookies.tokenRecoveryCode;
+
+    //Extraer la información del token
+    const decoded = jsonwebtoken.verify(token, config.JWT.secret);
+
+    if (decoded.code !== code) {
+      return res.json({ message: "Invalid code" });
+    }
+
+    //Marcar el token como verificado
+    const newToken = jsonwebtoken.sign(
+      //1-¿Que vamos a guardar?
+      {
+        email: decoded.email,
+        code: decoded.code,
+        userType: decoded.userType,
+        verified: true,
+      },
+      //2- Secret key
+      config.JWT.secret,
+      //3- ¿Cuando expira?
+      { expiresIn: "20m" }
+    );
+
+    res.cookie("tokenRecoveryCode", newToken, { maxAge: 20 * 60 * 1000 });
+
+    res.json({ message: "Code verified successfully" });
   } catch (error) {
     console.log("error" + error);
   }
