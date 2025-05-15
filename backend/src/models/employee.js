@@ -1,11 +1,3 @@
-/*
-    Campos:
-        nombre
-        descripcion
-        precio
-        stock
-*/
-
 import { Schema, model } from "mongoose";
 
 const employeeSchema = new Schema(
@@ -22,45 +14,40 @@ const employeeSchema = new Schema(
     birthday: {
       type: Date,
       require: true,
- 
     },
 
     email: {
-        type: String,
-      },
+      type: String,
+    },
 
-      address: {
-        type: String,
-      },
+    address: {
+      type: String,
+    },
 
     password: {
       type: String,
       require: true,
-
     },
     hireDate: {
-        type: String,
-      },
+      type: String,
+    },
 
     telephone: {
-        type: String,
-        require: true,
- 
-      },
+      type: String,
+      require: true,
+    },
 
-      dui: {
-        type: String,
-        require: true,
-
-      },
-      isVerified: {
-        type: Boolean,
-      },
-      issnumber: {
-        type: String,
-        require: true,
-   
-      },
+    dui: {
+      type: String,
+      require: true,
+    },
+    isVerified: {
+      type: Boolean,
+    },
+    issnumber: {
+      type: String,
+      require: true,
+    },
   },
   {
     timestamps: true,
