@@ -11,7 +11,8 @@ branchesController.getbranches = async (req, res) => {
 // INSERT
 branchesController.createbranches = async (req, res) => {
   const { name, lastName, birthday, email, password, telephone, dui } = req.body;
-  const newbranches = new branchesModel({ name, lastName, birthday, email, password, telephone, dui});
+  
+  const newbranches = new branche1sModel({ name, lastName, birthday, email, password, telephone, dui});
   await newbranches.save();
   res.json({ message: "branches save" });
 };

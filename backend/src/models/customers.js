@@ -45,6 +45,11 @@ const customersSchema = new Schema(
     isVerified: {
       type: Boolean,
     },
+    age:{
+      type: Number,
+      min: 18,
+      max: 100
+    }
   },
   {
     timestamps: true,
